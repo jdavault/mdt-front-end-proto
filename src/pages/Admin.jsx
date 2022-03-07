@@ -19,7 +19,7 @@ const AdminPage = () => {
     );
   }, []);
   return (
-    <div className="container">
+    <div className="main-container">
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>

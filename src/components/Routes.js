@@ -12,6 +12,7 @@ import Register from "./Register";
 import Register2 from "./Register2";
 import Home from "../pages/Home";
 import MyAccount from "../pages/MyAccount";
+import { Navigate } from 'react-router-dom';
 
 import Request from "../pages/Request";
 import SalesRep from "../pages/SalesRep";
@@ -23,23 +24,29 @@ import { history } from "../helpers/history";
 
 
 const Navigation = () => {
+
   const [showSalesRepPage, setShowSalesRepPage] = useState(false);
   const [showAdminPage, setShowAdminPage] = useState(false);
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     history.listen((location) => {
       dispatch(clearMessage()); // clear message when changing location
     });
   }, [dispatch]);
+
   useEffect(() => {
     if (currentUser) {
       setShowSalesRepPage(currentUser.roles.includes("ROLE_SALES_REP"));
       setShowAdminPage(currentUser.roles.includes("ROLE_ADMIN"));
     }
   }, [currentUser]);
-  const logOut = () => {
+
+  const logOut = (e) => {
+    e.preventDefault();
     dispatch(logout());
+    return <Navigate to="/" />
   };
 
   return (
@@ -50,11 +57,13 @@ const Navigation = () => {
             Prior Auth
           </Link>
           <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
+            {currentUser == null && (
+              <li className="nav-item">
+                <Link to={"/home"} className="nav-link">
+                  Home
+                </Link>
+              </li>
+            )}
             {showSalesRepPage && (
               <li className="nav-item">
                 <Link to={"/salesrep"} className="nav-link">
@@ -69,10 +78,18 @@ const Navigation = () => {
                 </Link>
               </li>
             )}
-            {currentUser && (
+            {currentUser && !showSalesRepPage && !showAdminPage && (
               <li className="nav-item">
                 <Link to={"/request"} className="nav-link">
                   Request
+                </Link>
+              </li>
+            )}
+            {currentUser && !showAdminPage && (
+              <li className="nav-item">
+                <Link to={"/myaccount"} className="nav-link">
+                  My Account
+                  {/*{currentUser.username}*/}
                 </Link>
               </li>
             )}
@@ -80,12 +97,7 @@ const Navigation = () => {
           {currentUser ? (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link to={"/myaccount"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="/logout" className="nav-link" onClick={logOut}>
+                <a href="/" className="nav-link" onClick={logOut}>
                   LogOut
                 </a>
               </li>
@@ -105,7 +117,7 @@ const Navigation = () => {
             </div>
           )}
         </nav>
-        <div className="container mt-3">
+        <div className="form-container mt-3">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />

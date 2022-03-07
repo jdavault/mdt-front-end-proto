@@ -1,17 +1,18 @@
 import React from "react";
-//import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 const MyAccount = () => {
+
   const { user: currentUser } = useSelector((state) => state.auth);
-  //if (!currentUser) {
-  //  return <Redirect to="/login" />;
-  //}
-  console.log("USERNAME", currentUser);
+
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
 
   let message =
     <>
       <header className="jumbotron">
-        <h1>My Account</h1>
+        <h1>MyAccount Page</h1>
         <h3>
           <strong>There was some issue showing the user data</strong>
         </h3>
@@ -21,7 +22,7 @@ const MyAccount = () => {
   if (currentUser) {
     message = <>
       <header className="jumbotron">
-        <h1>My Account</h1>
+        <h1>MyAccount Page</h1>
         <h3>
           <strong>{currentUser.username}</strong> My Account
         </h3>
@@ -49,7 +50,7 @@ const MyAccount = () => {
   }
 
   return (
-    < div className="container" >
+    < div className="main-container" >
       {message}
     </div >
 

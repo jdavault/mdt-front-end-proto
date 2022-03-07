@@ -1,9 +1,9 @@
-import * as ActionTypes from "../types/actionTypes";
+import { AuthActionTypes } from "../types/actionTypes";
 
 export const setMessage = (message) => ({
-  type: ActionTypes.SET_MESSAGE,
+  type: AuthActionTypes.SET_MESSAGE,
   payload: message,
 });
 export const clearMessage = () => ({
-  type: ActionTypes.CLEAR_MESSAGE,
+  type: AuthActionTypes.CLEAR_MESSAGE,
 });

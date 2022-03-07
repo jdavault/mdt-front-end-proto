@@ -1,14 +1,18 @@
 /* eslint-disable import/no-anonymous-default-export */
-import * as ActionTypes from "../types/actionTypes";
+import { AuthActionTypes } from "../types/actionTypes";
 
-const initialState = {};
+const initialState = {
+  message: ""
+};
 
 export default function (state = initialState, action) {
+
   const { type, payload } = action;
+
   switch (type) {
-    case ActionTypes.SET_MESSAGE:
+    case AuthActionTypes.SET_MESSAGE:
       return { message: payload };
-    case ActionTypes.CLEAR_MESSAGE:
+    case AuthActionTypes.CLEAR_MESSAGE:
       return { message: "" };
     default:
       return state;

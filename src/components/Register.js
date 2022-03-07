@@ -83,10 +83,10 @@ const Register = () => {
     }
   };
 
-  const roleType = [
-    { Id: 'rep', Role: 'Sales Rep' },
-    { Id: 'admin', Role: 'Admin' },
-    { Id: 'user', Role: 'User' }]
+  // const roleType = [
+  //   { Id: 'rep', Role: 'Sales Rep' },
+  //   { Id: 'admin', Role: 'Admin' },
+  //   { Id: 'user', Role: 'User' }]
 
   return (
     <div className="col-md-12">

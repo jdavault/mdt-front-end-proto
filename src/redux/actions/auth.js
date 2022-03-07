@@ -1,14 +1,14 @@
-import * as ActionTypes from "../types/actionTypes";
+import { AuthActionTypes } from "../types/actionTypes";
 import AuthService from "../../services/auth.service";
 
 export const register = (username, email, password, role) => (dispatch) => {
   return AuthService.register(username, email, password, role).then(
     (response) => {
       dispatch({
-        type: ActionTypes.REGISTER_SUCCESS,
+        type: AuthActionTypes.REGISTER_SUCCESS,
       });
       dispatch({
-        type: ActionTypes.SET_MESSAGE,
+        type: AuthActionTypes.SET_MESSAGE,
         payload: response.data.message
       });
       return Promise.resolve();
@@ -21,22 +21,23 @@ export const register = (username, email, password, role) => (dispatch) => {
         error.message ||
         error.toString();
       dispatch({
-        type: ActionTypes.REGISTER_FAIL,
+        type: AuthActionTypes.REGISTER_FAIL,
       });
       dispatch({
-        type: ActionTypes.SET_MESSAGE,
+        type: AuthActionTypes.SET_MESSAGE,
         payload: message,
       });
       return Promise.reject();
     }
   );
 };
+
 export const login = (username, password) => (dispatch) => {
   return AuthService.login(username, password).then(
     (data) => {
       console.log("Data from LOGIN", data)
       dispatch({
-        type: ActionTypes.LOGIN_SUCCESS,
+        type: AuthActionTypes.LOGIN_SUCCESS,
         payload: { user: data },
       });
       return Promise.resolve();
@@ -49,10 +50,10 @@ export const login = (username, password) => (dispatch) => {
         error.message ||
         error.toString();
       dispatch({
-        type: ActionTypes.LOGIN_FAIL,
+        type: AuthActionTypes.LOGIN_FAIL,
       });
       dispatch({
-        type: ActionTypes.SET_MESSAGE,
+        type: AuthActionTypes.SET_MESSAGE,
         payload: message,
       });
       return Promise.reject();
@@ -62,6 +63,6 @@ export const login = (username, password) => (dispatch) => {
 export const logout = () => (dispatch) => {
   AuthService.logout();
   dispatch({
-    type: ActionTypes.LOGOUT,
+    type: AuthActionTypes.LOGOUT,
   });
 };

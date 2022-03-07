@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form, Input, Button, Select } from 'antd';
 import { register } from "../redux/actions/auth";
 
@@ -18,13 +18,13 @@ const tailLayout = {
 const Register2 = () => {
 
   const form = useRef();
-  const checkBtn = useRef();
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  const { message } = useSelector(state => state.message);
+  //const checkBtn = useRef();
+  const [username,] = useState("");
+  const [email,] = useState("");
+  const [password,] = useState("");
+  const [role,] = useState("");
+  const [, setSuccessful] = useState(false);
+  //const { message } = useSelector(state => state.message);
   const dispatch = useDispatch();
 
 
@@ -80,19 +80,25 @@ const Register2 = () => {
           className="profile-img-card"
         />
         <Form ref={form} {...layout} name="control-ref" onFinish={onFinish}>
-          <Form.Item name="username" label="UserName" rules={[{ required: true }]}>
+          <Form.Item
+            style={{ marginBottom: "5px" }}
+            name="username" label="UserName" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+          <Form.Item
+            style={{ marginBottom: "5px" }}
+
+            name="email" label="Email" rules={[{ required: true }]}>
             <Input />
           </Form.Item>
 
           <Form.Item
+            style={{ marginBottom: "10px" }}
             label="Password"
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password />
+            <Input.Password style={{ paddingBottm: "0 0 0 0" }} />
           </Form.Item>
 
           <Form.Item name="role" label="Role" rules={[{ required: true }]}>

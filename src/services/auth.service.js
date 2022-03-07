@@ -2,6 +2,7 @@ import axios from "axios";
 import { APP_CONFIG } from "../config";
 
 const API_URL = APP_CONFIG.BACKEND_API_URL + "/auth/";
+
 const register = (username, email, password, role) => {
   return axios.post(API_URL + "signup", {
     username,
@@ -25,6 +26,7 @@ const login = (username, password) => {
 };
 const logout = () => {
   localStorage.removeItem("user");
+
 };
 
 const AuthService = {
