@@ -14,13 +14,11 @@ export default function (state = initialState, action) {
   switch (type) {
     case AuthActionTypes.REGISTER_SUCCESS:
       return {
-        ...state,
-        isLoggedIn: false,
+        ...state, isLoggedIn: false,
       };
     case AuthActionTypes.REGISTER_FAIL:
       return {
-        ...state,
-        isLoggedIn: false,
+        ...state, isLoggedIn: false,
       };
     case AuthActionTypes.LOGIN_SUCCESS:
       return {

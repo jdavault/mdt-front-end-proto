@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 const MyAccount = () => {
 
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const { user: currentUser } = useSelector(state => state.auth);
 
   if (!currentUser) {
     return <Navigate to="/login" />;
@@ -24,7 +24,7 @@ const MyAccount = () => {
       <header className="jumbotron">
         <h1>MyAccount Page</h1>
         <h3>
-          <strong>{currentUser.username}</strong> My Account
+          <strong>Username: {currentUser.username}</strong>
         </h3>
       </header>
       <p>
@@ -33,9 +33,6 @@ const MyAccount = () => {
       </p>
       <p>
         <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Username:</strong> {currentUser.username}
       </p>
       <p>
         <strong>Email:</strong> {currentUser.email}
